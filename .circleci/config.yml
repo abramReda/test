@@ -2,6 +2,7 @@
 # See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
 
+
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
@@ -17,6 +18,16 @@ jobs:
       - run:
           name: "Say hello"
           command: "echo Hello, World!"
+  display-author:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      - run:
+          name: "echo author name"
+          command: |
+            echo the name of the person creating this demo is |
+            echo $author_name
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
@@ -24,3 +35,4 @@ workflows:
   say-hello-workflow:
     jobs:
       - say-hello
+      - display-author
