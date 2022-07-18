@@ -50,7 +50,7 @@ jobs:
 workflows:
   say-hello-workflow:
     jobs:
-      - failur_job
+      #- failur_job
       - save_hello_world_output
       - print_output_file:
           requires:
