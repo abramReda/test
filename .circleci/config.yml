@@ -11,7 +11,7 @@ jobs:
       - image: cimg/base:stable
     steps:
       - run: echo "hello from workspace" > output.txt
-      - persist_to_workspace
+      - persist_to_workspace:
         root: ~/
         paths:
           - output.txt
