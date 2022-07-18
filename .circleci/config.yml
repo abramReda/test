@@ -17,7 +17,7 @@ jobs:
       - image: cimg/base:stable
     steps:
       - attach_workspace:
-        at: ~/
+          at: ~/
       - run: cat ~/output.txt
 
   display-author:
