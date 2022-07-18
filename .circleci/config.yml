@@ -1,11 +1,20 @@
 
 version: 2.1
 
+defaults: &defaults
+  docker:
+    - image: cimg/base:stable
+
+commands:
+  print_pipline_id:
+    steps:
+      run: echo ${CIRCLE_WORKFLOW_ID}
+
 jobs:
   save_hello_world_output:
-    docker:
-      - image: cimg/base:stable
+    <<: *defaults
     steps:
+      - print_pipline_id
       - run: echo "hello from workspace" > ~/output.txt
       - persist_to_workspace:
           root: ~/
@@ -13,16 +22,14 @@ jobs:
             - output.txt
 
   print_output_file:
-    docker:
-      - image: cimg/base:stable
+    <<: *defaults
     steps:
       - attach_workspace:
           at: ~/
       - run: cat ~/output.txt
 
   display-author:
-    docker:
-      - image: cimg/base:stable
+    <<: *defaults
     steps:
       - checkout
       - run:
