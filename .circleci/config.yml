@@ -37,9 +37,20 @@ jobs:
           command: |
             echo $author_name
 
+  # job failures
+  failur_job:
+    <<: *defaults
+    steps:
+      - run : exit 1
+      - run:
+          name: Error Handling
+          command: echo "job is failed to complet"
+          when: on_fail
+
 workflows:
   say-hello-workflow:
     jobs:
+      - failur_job
       - save_hello_world_output
       - print_output_file:
           requires:
