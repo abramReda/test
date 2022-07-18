@@ -26,7 +26,6 @@ jobs:
       - run:
           name: "echo author name"
           command: |
-            echo the name of the person creating this demo is |
             echo $author_name
 
 # Invoke jobs via workflows
